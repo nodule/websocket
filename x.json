@@ -12,7 +12,7 @@
       "ports": {
         "input": {
           "url": {
-            "type": "Object",
+            "type": "object",
             "title": "Url",
             "properties": {
               "hostname": {
