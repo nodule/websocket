@@ -1,0 +1,27 @@
+{
+  "name": "nodule-websocket",
+  "description": "Websocket components for Chiχ",
+  "author": "Rob Halff <rob.halff@gmail.com>",
+  "version": "0.0.3",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nodule/websocket.git"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "chit": "0.x.x"
+  },
+  "engines": {
+    "node": ">=0.6.0"
+  },
+  "main": "x",
+  "scripts": {
+    "test": "chit"
+  },
+  "chix": {
+    "name": "websocket",
+    "color": "rgb(230,238,30)"
+  }
+}

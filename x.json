@@ -1,0 +1,77 @@
+{
+  "name": "websocket",
+  "description": "Websocket components for Chiχ",
+  "version": "0.0.3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nodule/websocket.git"
+  },
+  "dependencies": {},
+  "nodes": [
+    {
+      "ports": {
+        "input": {
+          "url": {
+            "type": "Object",
+            "title": "Url",
+            "properties": {
+              "hostname": {
+                "title": "Hostname",
+                "type": "string"
+              },
+              "pathname": {
+                "title": "Pathname",
+                "type": "string",
+                "default": "/"
+              },
+              "port": {
+                "title": "Port",
+                "type": "string"
+              },
+              "protocol": {
+                "title": "Protocol",
+                "enum": [
+                  "ws:",
+                  "wss:"
+                ]
+              }
+            }
+          }
+        },
+        "output": {
+          "error": {
+            "type": "Object",
+            "title": "Error"
+          },
+          "client": {
+            "type": "WebSocketClient",
+            "title": "WebSocketClient"
+          },
+          "connection": {
+            "type": "WebSocketConnection",
+            "title": "WebSocketConnection"
+          },
+          "close": {
+            "type": "any",
+            "title": "Close"
+          },
+          "message": {
+            "type": "object",
+            "title": "Message"
+          }
+        }
+      },
+      "require": {
+        "websocket": "1.x.x"
+      },
+      "phrases": {
+        "active": "Creating websocket client"
+      },
+      "description": "Websocket Client",
+      "ns": "websocket",
+      "name": "client",
+      "fn": "var client = new websocket.client;\noutput = function() {\n\n  client.on('connectFailed', function(error) {\n    cb({ error: error });\n  });\n\n  client.on('connect', function(connection) {\n\n    connection.on('error', function(error) {\n      cb({ error: error });\n    });\n\n    connection.on('close', function() {\n      cb({ close: null });\n    });\n\n    connection.on('close', function() {\n      cb({ close: null });\n    });\n\n    connection.on('message', function(message) {\n      cb({ message: message });\n    });\n\n    cb({\n      connection: connection,\n      client: client\n    });\n\n  });\n\n  client.connect(input.url, input.protocol);\n\n};\n"
+    }
+  ],
+  "twigs": []
+}

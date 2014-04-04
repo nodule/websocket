@@ -1,0 +1,60 @@
+{
+  "name":"client",
+  "ns":"websocket",
+  "description":"Websocket Client",
+  "phrases": {
+    "active": "Creating websocket client"
+  },
+  "require": {
+    "websocket": "1.x.x"
+  },
+  "ports":{
+    "input":{
+      "url": {
+        "type": "Object",
+        "title":"Url",
+        "properties": {
+          "hostname": {
+            "title": "Hostname",
+            "type": "string"
+          },
+          "pathname": {
+            "title": "Pathname",
+            "type": "string",
+            "default": "/"
+          },
+          "port": {
+            "title": "Port",
+            "type": "string"
+          },
+          "protocol": {
+            "title": "Protocol",
+            "enum": ["ws:","wss:"]
+          }
+        }
+      }
+    },
+    "output": {
+      "error": {
+        "type": "Object",
+        "title":"Error"
+      },
+      "client": {
+        "type": "WebSocketClient",
+        "title":"WebSocketClient"
+      },
+      "connection": {
+        "type": "WebSocketConnection",
+        "title":"WebSocketConnection"
+      },
+      "close": {
+        "type": "any",
+        "title":"Close"
+      },
+      "message": {
+        "type": "object",
+        "title":"Message"
+      }
+    }
+  }
+}
