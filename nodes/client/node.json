@@ -1,18 +1,15 @@
 {
-  "name":"client",
-  "ns":"websocket",
-  "description":"Websocket Client",
+  "name": "client",
+  "ns": "websocket",
+  "description": "Websocket Client",
   "phrases": {
     "active": "Creating websocket client"
   },
-  "require": {
-    "websocket": "1.x.x"
-  },
-  "ports":{
-    "input":{
+  "ports": {
+    "input": {
       "url": {
         "type": "object",
-        "title":"Url",
+        "title": "Url",
         "properties": {
           "hostname": {
             "title": "Hostname",
@@ -29,7 +26,10 @@
           },
           "protocol": {
             "title": "Protocol",
-            "enum": ["ws:","wss:"]
+            "enum": [
+              "ws:",
+              "wss:"
+            ]
           }
         }
       }
@@ -37,24 +37,29 @@
     "output": {
       "error": {
         "type": "Object",
-        "title":"Error"
+        "title": "Error"
       },
       "client": {
         "type": "WebSocketClient",
-        "title":"WebSocketClient"
+        "title": "WebSocketClient"
       },
       "connection": {
         "type": "WebSocketConnection",
-        "title":"WebSocketConnection"
+        "title": "WebSocketConnection"
       },
       "close": {
         "type": "any",
-        "title":"Close"
+        "title": "Close"
       },
       "message": {
         "type": "object",
-        "title":"Message"
+        "title": "Message"
       }
+    }
+  },
+  "dependencies": {
+    "npm": {
+      "websocket": "1.x.x"
     }
   }
 }

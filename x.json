@@ -9,6 +9,11 @@
   "dependencies": {},
   "nodes": [
     {
+      "dependencies": {
+        "npm": {
+          "websocket": "1.x.x"
+        }
+      },
       "ports": {
         "input": {
           "url": {
@@ -60,9 +65,6 @@
             "title": "Message"
           }
         }
-      },
-      "require": {
-        "websocket": "1.x.x"
       },
       "phrases": {
         "active": "Creating websocket client"
