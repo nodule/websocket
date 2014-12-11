@@ -30,5 +30,10 @@ on.input.url = function() {
 };
 
 on.input.send = function(data) {
-  client.send(data);
+  if(state.client) {
+    state.client.send(data);
+  } else {
+    // should revoke input && re-queue
+    return false;
+  }
 };
