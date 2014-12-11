@@ -18,25 +18,27 @@
         "input": {
           "url": {
             "type": "string",
-            "title": "Url"
+            "title": "Url",
+            "async": true
           },
           "protocol": {
             "title": "Protocol",
             "type": "string"
+          },
+          "send": {
+            "title": "Send",
+            "type": "string",
+            "async": true
           }
         },
         "output": {
-          "error": {
-            "type": "Object",
-            "title": "Error"
-          },
           "client": {
-            "type": "WebSocketClient",
-            "title": "WebSocketClient"
+            "type": "WebSocket",
+            "title": "WebSocket"
           },
-          "connection": {
-            "type": "WebSocketConnection",
-            "title": "WebSocketConnection"
+          "open": {
+            "type": "any",
+            "title": "Open"
           },
           "close": {
             "type": "any",
@@ -45,16 +47,21 @@
           "message": {
             "type": "object",
             "title": "Message"
+          },
+          "error": {
+            "type": "Object",
+            "title": "Error"
           }
         }
       },
       "phrases": {
         "active": "Creating websocket client"
       },
+      "async": true,
       "description": "Websocket Client",
       "ns": "websocket",
       "name": "client",
-      "fn": "var client = new websocket.w3cwebsocket;\noutput = function() {\n\n  client.on('connectFailed', function(error) {\n    cb({ error: error });\n  });\n\n  client.on('connect', function(connection) {\n\n    connection.on('error', function(error) {\n      cb({ error: error });\n    });\n\n    connection.on('close', function() {\n      cb({ close: null });\n    });\n\n    connection.on('close', function() {\n      cb({ close: null });\n    });\n\n    connection.on('message', function(message) {\n      cb({ message: message });\n    });\n\n    cb({\n      connection: connection,\n      client: client\n    });\n\n  });\n\n  client.connect(input.url, input.protocol);\n\n};\n"
+      "fn": "on.input.url = function() {\n\n  state.client = null;\n\n  if(input.protocol) {\n    state.client = new websocket.w3cwebsocket(input.url, input.protocol);\n  } else {\n    state.client = new websocket.w3cwebsocket(input.url);\n  }\n\n  state.client.onmessage = function(event) {\n    cb({ message: event.data });\n  };\n\n  state.client.onerror = function(event) {\n    cb({ error: event });\n  };\n\n  state.client.onclose = function(event) {\n    cb({ close: event });\n  };\n\n  state.client.onopen = function(event) {\n    cb({\n      client: client,\n      open: event\n    });\n  };\n\n};\n\non.input.send = function(data) {\n  client.send(data);\n};\n"
     }
   ],
   "twigs": []

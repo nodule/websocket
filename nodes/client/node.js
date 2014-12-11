@@ -1,35 +1,34 @@
-var client = new websocket.w3cwebsocket;
-output = function() {
+on.input.url = function() {
 
-  client.on('connectFailed', function(error) {
-    cb({ error: error });
-  });
+  state.client = null;
 
-  client.on('connect', function(connection) {
+  if(input.protocol) {
+    state.client = new websocket.w3cwebsocket(input.url, input.protocol);
+  } else {
+    state.client = new websocket.w3cwebsocket(input.url);
+  }
 
-    connection.on('error', function(error) {
-      cb({ error: error });
-    });
+  state.client.onmessage = function(event) {
+    cb({ message: event.data });
+  };
 
-    connection.on('close', function() {
-      cb({ close: null });
-    });
+  state.client.onerror = function(event) {
+    cb({ error: event });
+  };
 
-    connection.on('close', function() {
-      cb({ close: null });
-    });
+  state.client.onclose = function(event) {
+    cb({ close: event });
+  };
 
-    connection.on('message', function(message) {
-      cb({ message: message });
-    });
-
+  state.client.onopen = function(event) {
     cb({
-      connection: connection,
-      client: client
+      client: client,
+      open: event
     });
+  };
 
-  });
+};
 
-  client.connect(input.url, input.protocol);
-
+on.input.send = function(data) {
+  client.send(data);
 };

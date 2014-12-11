@@ -2,6 +2,7 @@
   "name": "client",
   "ns": "websocket",
   "description": "Websocket Client",
+  "async": true,
   "phrases": {
     "active": "Creating websocket client"
   },
@@ -9,25 +10,27 @@
     "input": {
       "url": {
         "type": "string",
-        "title": "Url"
+        "title": "Url",
+        "async": true
       },
       "protocol": {
         "title": "Protocol",
         "type": "string"
+      },
+      "send": {
+        "title": "Send",
+        "type": "string",
+        "async": true
       }
     },
     "output": {
-      "error": {
-        "type": "Object",
-        "title": "Error"
-      },
       "client": {
-        "type": "WebSocketClient",
-        "title": "WebSocketClient"
+        "type": "WebSocket",
+        "title": "WebSocket"
       },
-      "connection": {
-        "type": "WebSocketConnection",
-        "title": "WebSocketConnection"
+      "open": {
+        "type": "any",
+        "title": "Open"
       },
       "close": {
         "type": "any",
@@ -36,6 +39,10 @@
       "message": {
         "type": "object",
         "title": "Message"
+      },
+      "error": {
+        "type": "Object",
+        "title": "Error"
       }
     }
   },
