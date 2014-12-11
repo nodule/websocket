@@ -17,30 +17,12 @@
       "ports": {
         "input": {
           "url": {
-            "type": "object",
-            "title": "Url",
-            "properties": {
-              "hostname": {
-                "title": "Hostname",
-                "type": "string"
-              },
-              "pathname": {
-                "title": "Pathname",
-                "type": "string",
-                "default": "/"
-              },
-              "port": {
-                "title": "Port",
-                "type": "string"
-              },
-              "protocol": {
-                "title": "Protocol",
-                "enum": [
-                  "ws:",
-                  "wss:"
-                ]
-              }
-            }
+            "type": "string",
+            "title": "Url"
+          },
+          "protocol": {
+            "title": "Protocol",
+            "type": "string"
           }
         },
         "output": {
