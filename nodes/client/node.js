@@ -22,7 +22,7 @@ on.input.url = function() {
 
   state.client.onopen = function(event) {
     output({
-      client: client,
+      client: state.client,
       open: event
     });
   };
