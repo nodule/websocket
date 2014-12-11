@@ -9,19 +9,19 @@ on.input.url = function() {
   }
 
   state.client.onmessage = function(event) {
-    cb({ message: event.data });
+    output({ message: event.data });
   };
 
   state.client.onerror = function(event) {
-    cb({ error: event });
+    output({ error: event });
   };
 
   state.client.onclose = function(event) {
-    cb({ close: event });
+    output({ close: event });
   };
 
   state.client.onopen = function(event) {
-    cb({
+    output({
       client: client,
       open: event
     });
