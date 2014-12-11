@@ -23,7 +23,8 @@
           },
           "protocol": {
             "title": "Protocol",
-            "type": "string"
+            "type": "string",
+            "default": null
           },
           "send": {
             "title": "Send",
