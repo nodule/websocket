@@ -1,4 +1,4 @@
-var client = new websocket.client;
+var client = new websocket.w3cwebsocket;
 output = function() {
 
   client.on('connectFailed', function(error) {
