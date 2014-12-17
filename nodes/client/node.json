@@ -38,7 +38,7 @@
         "title": "Close"
       },
       "message": {
-        "type": "object",
+        "type": "any",
         "title": "Message"
       },
       "error": {

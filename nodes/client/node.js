@@ -31,7 +31,7 @@ on.input.url = function() {
 
 on.input.send = function(data) {
   if(state.client && state.client.readyState === state.client.OPEN) {
-    state.client.send(data);
+    state.client.send(JSON.stringify(data));
   } else {
     // should revoke input && re-queue
     return false;
