@@ -9,7 +9,7 @@ on.input.url = function() {
   }
 
   state.client.onmessage = function(event) {
-    output({ message: event.data });
+    output({ message: JSON.parse(event.data) });
   };
 
   state.client.onerror = function(event) {

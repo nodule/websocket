@@ -20,7 +20,7 @@
       },
       "send": {
         "title": "Send",
-        "type": "string",
+        "type": "any",
         "async": true
       }
     },
