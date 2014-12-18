@@ -10,8 +10,7 @@
     "input": {
       "url": {
         "type": "string",
-        "title": "Url",
-        "async": true
+        "title": "Url"
       },
       "protocol": {
         "title": "Protocol",
