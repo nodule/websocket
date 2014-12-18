@@ -1,9 +1,9 @@
 on.input.url = function(url) {
 
   if(input.protocol) {
-    state.client = new websocket.w3cwebsocket(url, input.protocol);
+    state.client = new websocket.w3cwebsocket(data, input.protocol);
   } else {
-    state.client = new websocket.w3cwebsocket(url);
+    state.client = new websocket.w3cwebsocket(data);
   }
 
   state.client.onmessage = function(event) {
@@ -27,7 +27,7 @@ on.input.url = function(url) {
 
 };
 
-on.input.send = function(data) {
+on.input.send = function() {
 
   if(state.client && state.client.readyState === state.client.OPEN) {
     state.client.send(JSON.stringify(data));
