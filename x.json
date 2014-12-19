@@ -18,8 +18,7 @@
         "input": {
           "url": {
             "type": "string",
-            "title": "Url",
-            "async": true
+            "title": "Url"
           },
           "protocol": {
             "title": "Protocol",
@@ -62,7 +61,7 @@
       "description": "Websocket Client",
       "ns": "websocket",
       "name": "client",
-      "fn": "on.input.url = function(url) {\n\n  if(input.protocol) {\n    state.client = new websocket.w3cwebsocket(data, input.protocol);\n  } else {\n    state.client = new websocket.w3cwebsocket(data);\n  }\n\n  state.client.onmessage = function(event) {\n    output({ message: JSON.parse(event.data) });\n  };\n\n  state.client.onerror = function(event) {\n    output({ error: event });\n  };\n\n  state.client.onclose = function(event) {\n    output({ close: event });\n  };\n\n  state.client.onopen = function(event) {\n    output({\n      client: state.client,\n      open: event\n    });\n  };\n\n};\n\non.input.send = function() {\n\n  if(state.client && state.client.readyState === state.client.OPEN) {\n    state.client.send(JSON.stringify(data));\n  } else {\n    // should revoke input && re-queue\n    return false;\n  }\n};\n"
+      "fn": "on.input.send = function() {\n\n  if(!state.client) {\n\n    if(input.protocol) {\n      state.client = new websocket.w3cwebsocket(input.url, input.protocol);\n    } else {\n      state.client = new websocket.w3cwebsocket(input.url);\n    }\n\n    state.client.onmessage = function(event) {\n      output({ message: JSON.parse(event.data) });\n    };\n\n    state.client.onerror = function(event) {\n      output({ error: event });\n    };\n\n    state.client.onclose = function(event) {\n      output({ close: event });\n    };\n\n    state.client.onopen = function(event) {\n      output({\n        client: state.client,\n        open: event\n      });\n    };\n\n  }\n\n  if(state.client && state.client.readyState === state.client.OPEN) {\n    state.client.send(JSON.stringify(data));\n  } else {\n    // should revoke input && re-queue\n    return false;\n  }\n};\n"
     }
   ],
   "twigs": []
