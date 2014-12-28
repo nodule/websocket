@@ -1,5 +1,5 @@
 {
-  "name": "nodule-websocket",
+  "name": "chix-websocket",
   "description": "Websocket components for Chiχ",
   "author": "Rob Halff <rob.halff@gmail.com>",
   "version": "0.0.3",
@@ -16,7 +16,6 @@
   "engines": {
     "node": ">=0.6.0"
   },
-  "main": "x",
   "scripts": {
     "test": "chit"
   },
