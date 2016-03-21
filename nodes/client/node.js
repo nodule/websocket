@@ -30,7 +30,7 @@ on.input.send = function() {
   }
 
   if(state.client && state.client.readyState === state.client.OPEN) {
-    state.client.send(JSON.stringify(data));
+    state.client.send(JSON.stringify(input.send));
   } else {
     // should revoke input && re-queue
     return false;
