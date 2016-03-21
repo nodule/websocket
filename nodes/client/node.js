@@ -1,7 +1,5 @@
 on.input.send = function() {
-
   if(!state.client) {
-
     if($.protocol) {
       state.client = new websocket.w3cwebsocket($.url, $.protocol);
     } else {
@@ -9,24 +7,23 @@ on.input.send = function() {
     }
 
     state.client.onmessage = function(event) {
-      output({ message: JSON.parse(event.data) });
+      output({ message: $.create(JSON.parse(event.data)) });
     };
 
     state.client.onerror = function(event) {
-      output({ error: event });
+      output({ error: $.create(event) });
     };
 
     state.client.onclose = function(event) {
-      output({ close: event });
+      output({ close: $.create(event) });
     };
 
     state.client.onopen = function(event) {
       output({
-        client: state.client,
-        open: event
+        client: $.create(state.client),
+        open: $.create(event)
       });
     };
-
   }
 
   if(state.client && state.client.readyState === state.client.OPEN) {
