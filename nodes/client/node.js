@@ -2,10 +2,10 @@ on.input.send = function() {
 
   if(!state.client) {
 
-    if(input.protocol) {
-      state.client = new websocket.w3cwebsocket(input.url, input.protocol);
+    if($.protocol) {
+      state.client = new websocket.w3cwebsocket($.url, $.protocol);
     } else {
-      state.client = new websocket.w3cwebsocket(input.url);
+      state.client = new websocket.w3cwebsocket($.url);
     }
 
     state.client.onmessage = function(event) {
@@ -30,7 +30,7 @@ on.input.send = function() {
   }
 
   if(state.client && state.client.readyState === state.client.OPEN) {
-    state.client.send(JSON.stringify(input.send));
+    state.client.send(JSON.stringify($.send));
   } else {
     // should revoke input && re-queue
     return false;
