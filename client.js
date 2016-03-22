@@ -24,42 +24,40 @@ module.exports = {
         fn: function __SEND__(data, x, source, state, input, output, websocket) {
           var r = function() {
             if (!state.client) {
-
-              if (input.protocol) {
-                state.client = new websocket.w3cwebsocket(input.url, input.protocol);
+              if ($.protocol) {
+                state.client = new websocket.w3cwebsocket($.url, $.protocol);
               } else {
-                state.client = new websocket.w3cwebsocket(input.url);
+                state.client = new websocket.w3cwebsocket($.url);
               }
 
               state.client.onmessage = function(event) {
                 output({
-                  message: JSON.parse(event.data)
+                  message: $.create(JSON.parse(event.data))
                 });
               };
 
               state.client.onerror = function(event) {
                 output({
-                  error: event
+                  error: $.create(event)
                 });
               };
 
               state.client.onclose = function(event) {
                 output({
-                  close: event
+                  close: $.create(event)
                 });
               };
 
               state.client.onopen = function(event) {
                 output({
-                  client: state.client,
-                  open: event
+                  client: $.create(state.client),
+                  open: $.create(event)
                 });
               };
-
             }
 
             if (state.client && state.client.readyState === state.client.OPEN) {
-              state.client.send(JSON.stringify(data));
+              state.client.send(JSON.stringify($.send));
             } else {
               // should revoke input && re-queue
               return false;

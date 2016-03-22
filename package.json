@@ -9,6 +9,7 @@
     "url": "https://github.com/nodule/websocket.git"
   },
   "dependencies": {
+    "websocket": "^1.0.22"
   },
   "devDependencies": {
     "chit": "0.x.x"
