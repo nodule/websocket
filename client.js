@@ -21,7 +21,7 @@ module.exports = {
         title: "Send",
         type: "any",
         async: true,
-        fn: function __SEND__(data, x, source, state, input, output, websocket) {
+        fn: function __SEND__(data, source, state, input, $, output, websocket) {
           var r = function() {
             if (!state.client) {
               if ($.protocol) {
