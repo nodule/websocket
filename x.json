@@ -11,10 +11,12 @@
   },
   "nodes": [
     {
-      "dependencies": {
-        "npm": {
-          "websocket": "1.x.x"
-        }
+      "name": "client",
+      "ns": "websocket",
+      "description": "Websocket Client",
+      "async": true,
+      "phrases": {
+        "active": "Creating websocket client"
       },
       "ports": {
         "input": {
@@ -56,15 +58,12 @@
           }
         }
       },
-      "phrases": {
-        "active": "Creating websocket client"
+      "dependencies": {
+        "npm": {
+          "websocket": "1.x.x"
+        }
       },
-      "async": true,
-      "description": "Websocket Client",
-      "ns": "websocket",
-      "name": "client",
       "fn": "on.input.send = function() {\n  if(!state.client) {\n    if($.protocol) {\n      state.client = new websocket.w3cwebsocket($.url, $.protocol);\n    } else {\n      state.client = new websocket.w3cwebsocket($.url);\n    }\n\n    state.client.onmessage = function(event) {\n      output({ message: $.create(JSON.parse(event.data)) });\n    };\n\n    state.client.onerror = function(event) {\n      output({ error: $.create(event) });\n    };\n\n    state.client.onclose = function(event) {\n      output({ close: $.create(event) });\n    };\n\n    state.client.onopen = function(event) {\n      output({\n        client: $.create(state.client),\n        open: $.create(event)\n      });\n    };\n  }\n\n  if(state.client && state.client.readyState === state.client.OPEN) {\n    state.client.send(JSON.stringify($.send));\n  } else {\n    // should revoke input && re-queue\n    return false;\n  }\n};\n"
     }
-  ],
-  "twigs": []
+  ]
 }
